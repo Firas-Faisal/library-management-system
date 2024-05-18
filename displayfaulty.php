@@ -28,6 +28,7 @@ if ($conn->query($query) === TRUE) {
 // Close connection
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

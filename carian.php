@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	if (isset($_POST['cari_id'])) {
 		$cari_id = $_POST['cari_id'];
 
-		// SQL query to search for the book by title
+		// SQL query to search for the book by titlems
 		$sql = "SELECT * FROM Book WHERE tajuk LIKE '%$cari_id%'";
 		$result = $conn->query($sql);
 
