@@ -45,14 +45,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <header>
             <div class="header">
                 <a href="MainMenu.php"><img src="Logo library.png" alt="Library Logo" width="60" height="60"></a>
-                <h1>Delete Buku</h1>
+
                 <a href="menubuku.php"><img src="Back button.png" alt="Back Button" width="50" height="50"></a>
             </div>
         </header>
         <main>
             <hr>
             <div class="layer3" align="center">
+                <h2><u>Delete Buku</u></h2>
                 <form action="deletebuku.php" method="post">
+
                     <label for="delete">No. ID Buku untuk dipadam:</label><br><br>
                     <input type="text" name="delete_idbuku" id="delete_idbuku" required><br><br>
                     <input type="submit" value="Delete">

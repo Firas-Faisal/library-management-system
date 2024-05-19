@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 		// Verify password
 		if ($passUser == $row["Password"]) {
-			header("Location: http://localhost/Librarymanagementsystem/MainMenu.php");
+			header("Location: MainMenu.php");
 		} else {
 			$message = "Incorrect password, Please try again";
 		}
@@ -32,49 +32,61 @@ $conn->close();
 
 <html lang="en">
 
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Log in</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
 <body bgcolor="#D6DFCC">
 
-	<fieldset style="background-color:#FFF5ED;">
-		<table border="0" bgcolor="#FFF5ED" align="center">
-			<tr align="center">
-				<td width="100">
-					<img width="30" height="30" src="Logo library.png" alt="Library logo"></a>
-				</td>
-				<td width="1100">Login</td>
-			</tr>
+	<div class="layer2" align="center">
+		<header>
+			<div class="header">
+				<a href="login.php"><img src="Logo library.png" alt="library Logo" width="60" height="60"> </a>
+
+			</div>
+		</header>
 		</table>
-	</fieldset>
+		<main>
+			<hr>
+			<div class="layer3">
+				<center>
+					<h2><u>Login</u></h2>
+				</center>
+				<form action="login.php" method="post">
+					<center>
+						<table>
+							<tr>
+								<td colspan="2">
+									<h3> Sila Masukkan Maklumat :
+							</tr>
 
-	<form action="login.php" method="post">
-		<fieldset style="background-color:#B9BBDD" ;>
+							<tr>
+								<td><b>Name:</td>
+								<td><input type="text" name="nameuser" required> </td>
+							<tr>
 
-			<table border="0" cellspacing="10" align="center">
-				<tr>
-					<td colspan="2">
-						<h3> Sila Masukkan Maklumat :
-				</tr>
+							<tr>
+								<td><b>password:</td>
+								<td><input type="password" name="passuser" required> </td>
+							</tr>
+							<?php if (!empty($message)) : ?>
+								<tr>
+									<td colspan="2" align="center" style="color:red;"><?php echo $message; ?></td>
+								</tr>
+							<?php endif; ?>
+							<tr>
+								<td colspan="2" align="center"> <input type="submit" name="submitTextBox"></td>
+							</tr>
 
-				<tr>
-					<td><b>Name:</td>
-					<td><input type="text" name="nameuser" required> </td>
-				<tr>
-
-				<tr>
-					<td><b>password:</td>
-					<td><input type="password" name="passuser" required> </td>
-				</tr>
-				<?php if (!empty($message)) : ?>
-					<tr>
-						<td colspan="2" align="center" style="color:red;"><?php echo $message; ?></td>
-					</tr>
-				<?php endif; ?>
-				<tr>
-					<td colspan="2" align="center"> <input type="submit" name="submitTextBox"></td>
-				</tr>
-
-			</table>
-		</fieldset>
-	</form>
+						</table>
+					</center>
+				</form>
+			</div>
+		</main>
+	</div>
 
 </body>
 

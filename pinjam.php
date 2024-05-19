@@ -61,38 +61,44 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body bgcolor="#D6DFCC">
 
-    <fieldset style="background-color:#FFF5ED;">
-        <table border="0" bgcolor="#FFF5ED" align="center">
-            <tr align="center">
-                <td width="100"><a href="MainMenu.php"><img width="30" height="30" src="Logo library.png" alt="Library logo"></a></td>
-                <td width="1100">Pinjam Buku</td>
-                <td width="100"><a href="MainMenu.php"><img width="30" height="30" src="Back button.png" alt="Back Button"></a></td>
-            </tr>
-        </table>
-    </fieldset>
-    <form action="pinjam.php" method="post">
-        <fieldset style="background-color:#FFF5ED;">
-            <fieldset style="background-color:#B9BBDD;">
-                <table border="0" align="center">
-                    <tr>
-                        <td>1. Id Buku<br>
-                            <input type="text" name="idbuku" required>
-                        <td rowspan="2" width="100"></td>
-                        <td>
-                            2. Tarikh Pinjam<br>
-                            <input type="date" name="DateBorrow" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3. Nama Peminjam<br><input type="text" name="peminjam" required></td>
-                        <td>4. Tarikh Pulang<br><input type="date" name="DateReturn" required></td>
-                    </tr>
-                </table>
-                <br>
-                <center><input type="submit" name="Submit"></center>
-            </fieldset>
-        </fieldset>
-    </form>
+    <div class="layer2" align="center">
+        <header>
+            <div class="header">
+                <a href="MainMenu.php"><img src="Logo library.png" alt="library Logo" width="60" height="60"> </a>
+
+                <a href="MainMenu.php"><img src="Back button.png" alt="back button" width="50" height="50"></a>
+            </div>
+        </header>
+        <main>
+            <hr>
+            <div class="layer3" align="center">
+                <h2><u>Pinjam Buku</u></h2>
+                <form action="pinjam.php" method="post">
+                    <center>
+                        <table>
+                            <tr>
+                                <td>1. Id Buku<br>
+                                    <input type="text" name="idbuku" required>
+                                </td>
+                                <td>2. Tarikh Pinjam<br>
+                                    <input type="date" name="DateBorrow" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3. Nama Peminjam<br>
+                                    <input type="text" name="peminjam" required>
+                                </td>
+                                <td>4. Tarikh Pulang<br>
+                                    <input type="date" name="DateReturn" required>
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+                    <br>
+                    <input type="submit" value="Pinjam">
+                </form>
+            </div>
+            </form>
 </body>
 
 </html>

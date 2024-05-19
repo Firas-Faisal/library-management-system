@@ -12,7 +12,7 @@ $sql = "CREATE TABLE BorrowBook (
 
 
 if ($conn->query($sql) === TRUE) {
-    echo "New Book created successfully";
+    echo "New table created successfully";
 } else {
     echo "Error creating table:" . $conn->error;
 }

@@ -45,7 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,46 +52,50 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Return Book</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body bgcolor="#D6DFCC">
 
-	<fieldset style="background-color:#FFF5ED;">
-		<table border="0" bgcolor="#FFF5ED" align="center">
-			<tr align="center">
-				<td width="100"><a href="MainMenu.php"><img width="30" height="30" src="Logo library.png" alt="Library logo"></a></td>
-				<td width="1100">Return Book</td>
-				<td width="100"><a href="menubuku.php"><img width="30" height="30" src="Back button.png" alt="Back Button"></a></td>
-			</tr>
-		</table>
-	</fieldset>
-	<form action="pulang.php" method="post">
-		<fieldset style="background-color:#FFF5ED;">
-			<fieldset style="background-color:#B9BBDD;">
-				<table border="0" align="center">
-					<tr>
-						<td>Sila masukkan Borrow ID buku untuk dipulangkan:</td>
-					</tr>
-					<tr>
-						<td><input type="text" name="IDBukuPulang" required></td>
-					</tr>
-					<tr>
-						<td>Bilakah masa sebenar dipulangkan:</td>
-					</tr>
-					<tr>
-						<td><input type="date" name="ActualReturnDate" required></td>
-					</tr>
-					<?php if (!empty($message)) { ?>
-						<tr>
-							<td><span style="color:red;"><?php echo $message; ?></span></td>
-						</tr>
-					<?php } ?>
-				</table>
-				<br>
-				<center><input type="submit" value="Pulang"></center>
-			</fieldset>
-		</fieldset>
-	</form>
+	<div class="layer2" align="center">
+		<header>
+			<div class="header">
+				<a href="MainMenu.php"><img src="Logo library.png" alt="library Logo" width="60" height="60"> </a>
+				<a href="MainMenu.php"><img src="Back button.png" alt="back button" width="50" height="50"></a>
+			</div>
+		</header>
+		<main>
+			<hr>
+			<div class="layer3" align="center">
+				<h2><u>Return Book</u></h2>
+				<form action="pulang.php" method="post">
+					<center>
+						<table>
+							<tr>
+								<td>Sila masukkan Borrow ID buku untuk dipulangkan:</td>
+							</tr>
+							<tr>
+								<td><input type="text" name="IDBukuPulang" required></td>
+							</tr>
+							<tr>
+								<td>Bilakah masa sebenar dipulangkan:</td>
+							</tr>
+							<tr>
+								<td><input type="date" name="ActualReturnDate" required></td>
+							</tr>
+							<?php if (!empty($message)) { ?>
+								<tr>
+									<td><span style="color:red;"><?php echo $message; ?></span></td>
+								</tr>
+							<?php } ?>
+						</table>
+						<br>
+						<center><input type="submit" value="Pulang"></center>
+					</center>
+				</form>
+			</div>
+		</main>
+	</div>
 </body>
 
 </html>

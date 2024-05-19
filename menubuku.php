@@ -5,71 +5,62 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Menu Buku</title>
+	<link rel="stylesheet" href="style.css">
+	<style>
+		.header-flexstart {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0 20px;
+			/* Add padding to create space on both sides */
+		}
+
+		.logo-main-menu img,
+		.header-flexend img {
+			display: block;
+		}
+	</style>
 </head>
 
-<body bgcolor="#D6DFCC">
-	<fieldset style="background-color:#FFF5ED;">
-		<table border="0" bgcolor=" #FFF5ED" width="100%">
-			<tr>
-				<td>
+<body bgcolor="#d6dfcc">
+	<div class="layer2">
+		<header>
+			<div class="header-flexstart">
+				<div class="logo-main-menu">
 					<a href="MainMenu.php">
-						<img width="45" height="45" src="Logo library.png">
+						<img src="Logo library.png" alt="library Logo" width="60" height="60">
 					</a>
-				</td>
-				<td>
-				</td>
-				<td align="center">
-					<h1> Menu Buku </h1>
-				</td>
-				<td>
-				</td>
-				<td align="right">
+				</div>
+				<div>
+					<!-- Empty div for spacing -->
+				</div>
+				<div class="header-flexend">
 					<a href="MainMenu.php">
-						<img width="45" height="45" src="Back button.png">
+						<img src="Back button.png" alt="Back Button" width="60" height="60">
 					</a>
-				</td>
-			</tr>
-		</table>
-	</fieldset>
-	<fieldset style="background-color:#FFF5ED;">
-		<fieldset style="background-color:#B9BBDD;">
-			<table border="0" align="center" cellspacing="15">
-				<tr>
-					<td>
-						<h1>
-
-						</h1>
-					</td>
-				</tr>
-				<tr>
-					<td>1.
-						<a href="displaybuku.php">
-							<button>Display Buku</button>
-						</a>
-
-					</td>
-				</tr>
-
-				<tr>
-					<td>2.
-						<a href="tambahbuku.php">
-							<button>Tambah Buku</button>
-						</a>
-
-					</td>
-				</tr>
-				<tr>
-					<td>3.
-						<a href="deletebuku.php">
-							<button> Delete Buku </button>
-						</a>
-					</td>
-				</tr>
-
-			</table>
-		</fieldset>
-	</fieldset>
-
+				</div>
+			</div>
+		</header>
+		<main>
+			<hr>
+			<div class="layer3">
+				<h2><u>MENU BUKU</u></h2>
+				<ol>
+					<li>
+						<a href="displaybuku.php"><button>Display Buku</button></a>
+					</li>
+					<br>
+					<li>
+						<a href="tambahbuku.php"><button>Tambah Buku</button></a>
+					</li>
+					<br>
+					<li>
+						<a href="deletebuku.php"><button>Delete Buku</button></a>
+					</li>
+				</ol>
+			</div>
+		</main>
+	</div>
 </body>
 
 </html>

@@ -15,9 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 		if ($result->num_rows > 0) {
 			// Fetch the results and store them in the search_result variable
-			$search_result .= "<table border='1' cellpadding='10'><tr><th>ID Buku</th><th>Tajuk</th><th>Penerbit</th><th>Tahun Terbit</th><th>Genre</th><th>Kod Buku</th><th>Tingkat</th><th>Rak</th></tr>";
+			$search_result .= "<table border='1' align='center' cellpadding='10'><tr><th>ID Buku</th><th>Tajuk</th><th>Penerbit</th><th>Tahun Terbit</th><th>Genre</th><th>Kod Buku</th><th>Tingkat</th><th>Rak</th></tr>";
 			while ($row = $result->fetch_assoc()) {
-				$search_result .= "<tr><td>" . $row["idBuku"] . "</td><td>" . $row["tajuk"] . "</td><td>" . $row["penerbit"] . "</td><td>" . $row["tahunterbit"] . "</td><td>" . $row["genre"] . "</td><td>" . $row["kodbuku"] . "</td><td>" . $row["tingkat"] . "</td><td>" . $row["rak"] . "</td></tr>";
+				$search_result .= "<tr ><td>" . $row["idBuku"] . "</td><td>" . $row["tajuk"] . "</td><td>" . $row["penerbit"] . "</td><td>" . $row["tahunterbit"] . "</td><td>" . $row["genre"] . "</td><td>" . $row["kodbuku"] . "</td><td>" . $row["tingkat"] . "</td><td>" . $row["rak"] . "</td></tr>";
 			}
 			$search_result .= "</table>";
 		} else {
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		<header>
 			<div class="header">
 				<img src="Logo library.png" alt="library Logo" width="60" height="60">
-				<h1>Menu Carian Buku</h1>
+
 				<a href="MainMenu.php"><img src="Back button.png" alt="back button" width="50" height="50"></a>
 			</div>
 		</header>
@@ -53,20 +53,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			<hr>
 			<div class="layer3-carian">
 				<div class="layer4">
+					<h2><u>CARI BUKU</u></h2>
 					<p>Sila masukkan tajuk buku untuk di cari: </p>
 					<form action="carian.php" method="post">
 						<input type="text" name="cari_id" id="cari_id" placeholder="Search.." required>
 						<input type="submit" value="Cari">
 					</form>
 				</div>
-				<div class="layer5">
+				<div class="layer5" align='center'>
 					<p>Lokasi</p>
+
 					<?php
 					// Display search results
 					if ($search_result) {
 						echo $search_result;
 					}
 					?>
+
 				</div>
 			</div>
 

@@ -30,7 +30,7 @@
 					</li>
 					<br>
 					<li>
-						<a href="carian.php"><button>Carian</button></a>
+						<a href="carian.php"><button>Cari Buku</button></a>
 					</li>
 					<br>
 					<li>
