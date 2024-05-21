@@ -14,15 +14,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $result = $conn->query($check_sql);
 
         if ($result->num_rows > 0) {
-            // Book exists, proceed to delete
-            $sql = "DELETE FROM Book WHERE idbuku='$delete_idbuku'";
-            if ($conn->query($sql) === TRUE) {
-                header("Location: telahdidelete.php");
+            // Check if the book is currently borrowed
+            $borrowed_sql = "SELECT * FROM BorrowBook WHERE bookId='$delete_idbuku'";
+            $borrowed_result = $conn->query($borrowed_sql);
+
+            if ($borrowed_result->num_rows > 0) {
+                // Book is currently borrowed
+                $message = "You cannot delete this book because it is currently borrowed.";
             } else {
-                $message = "Error: " . $sql . "<br>" . $conn->error;
+                // Book exists and is not borrowed, proceed to delete
+                $sql = "DELETE FROM Book WHERE idbuku='$delete_idbuku'";
+                if ($conn->query($sql) === TRUE) {
+                    header("Location: telahdidelete.php");
+                } else {
+                    $message = "Error: " . $sql . "<br>" . $conn->error;
+                }
             }
         } else {
-            $message = "The book not found, please try again.";
+            $message = "The book was not found. Please try again.";
         }
     } else {
         $message = "Form fields are not set.";
@@ -30,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $conn->close(); // Close connection after handling form submission
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

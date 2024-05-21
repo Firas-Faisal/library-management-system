@@ -1,17 +1,17 @@
 <?php
-include 'connection.php';
+include 'connection.php'; // Include connection after checking request method
 
-$message = "";
-$stmt = null; // Initialize $stmt variable
-
+// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+	// Check if all required form fields are set
 	if (isset($_POST['IDBukuPulang']) && isset($_POST['ActualReturnDate'])) {
 
+		// Retrieve form data
 		$borrowId = $_POST['IDBukuPulang'];
 		$actualReturnDate = $_POST['ActualReturnDate'];
 
-		// Using prepared statement to prevent SQL injection
+		// Check if the book with Borrow ID exists in the BorrowBook table
 		$checkQuery = "SELECT * FROM BorrowBook WHERE borrowId = ?";
 		$stmt = $conn->prepare($checkQuery);
 		$stmt->bind_param("i", $borrowId);
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		$result = $stmt->get_result();
 
 		if ($result->num_rows > 0) {
-			// Update the ReturnBook table with the actual return date
+			// Book is currently borrowed, proceed to update ReturnBook table
 			$sql = "INSERT INTO ReturnBook (borrowId, actualReturnDate) VALUES (?, ?)";
 			$stmt = $conn->prepare($sql);
 			$stmt->bind_param("is", $borrowId, $actualReturnDate);
@@ -32,18 +32,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				$message = "Error executing query: " . $conn->error;
 			}
 		} else {
-			$message = "The book with Borrow ID $borrowId is unavailable for return as it has not been borrowed.";
+			// Book has not been borrowed or does not exist
+			$message = "You cannot return this book because it has not been borrowed or does not exist.";
 		}
 	} else {
+		// Required form fields are not set
 		$message = "Required form fields are not set.";
 	}
-	if ($stmt !== null) {
-		$stmt->close(); // Close prepared statement
-	}
+
+	$stmt->close(); // Close prepared statement
 	$conn->close(); // Close connection
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,8 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	<div class="layer2" align="center">
 		<header>
 			<div class="header">
-				<a href="MainMenu.php"><img src="Logo library.png" alt="library Logo" width="60" height="60"> </a>
-				<a href="MainMenu.php"><img src="Back button.png" alt="back button" width="50" height="50"></a>
+				<a href="MainMenu.php"><img src="Logo library.png" alt="Library Logo" width="60" height="60"></a>
+				<a href="MainMenu.php"><img src="Back button.png" alt="Back Button" width="50" height="50"></a>
 			</div>
 		</header>
 		<main>

@@ -4,7 +4,7 @@ include 'connection.php';
 $message = "";
 
 $sort = isset($_POST['sortby']) ? $_POST['sortby'] : 'title';
-$sort_column = 'tajuk';
+$sort_column = '';
 
 switch ($sort) {
 	case 'bookcode':

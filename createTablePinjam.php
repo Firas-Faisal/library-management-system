@@ -6,8 +6,8 @@ $sql = "CREATE TABLE BorrowBook (
     bookId INT(6) UNSIGNED NOT NULL,
     userName VARCHAR(100) NOT NULL,
     borrowDate DATE NOT NULL,
-    returnDate DATE NOT NULL,
-    FOREIGN KEY (bookId) REFERENCES Book(idBuku)
+    returnDate DATE NULL, -- Allow NULL values for returnDate to indicate a book is currently borrowed
+    FOREIGN KEY (bookId) REFERENCES Book(idBuku) on delete cascade
 )";
 
 

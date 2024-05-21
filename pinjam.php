@@ -1,51 +1,53 @@
 <?php
-include 'connection.php'; // Include connection after checking request method
+include 'connection.php'; // Include connection
+
+$message = ""; // Initialize a variable to store the message
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
     // Check if all required form fields are set
     if (isset($_POST['idbuku']) && isset($_POST['DateBorrow']) && isset($_POST['peminjam']) && isset($_POST['DateReturn'])) {
-
         // Retrieve form data
-        $idbuku = $_POST['idbuku'];
-        $dateBorrow = $_POST['DateBorrow'];
-        $peminjam = $_POST['peminjam'];
-        $dateReturn = $_POST['DateReturn'];
+        $idbuku = $conn->real_escape_string($_POST['idbuku']);
+        $dateBorrow = $conn->real_escape_string($_POST['DateBorrow']);
+        $peminjam = $conn->real_escape_string($_POST['peminjam']);
+        $dateReturn = $conn->real_escape_string($_POST['DateReturn']);
 
         // Check if idbuku exists in the Book table
         $checkQuery = "SELECT idBuku FROM Book WHERE idBuku = '$idbuku'";
         $result = $conn->query($checkQuery);
 
         if ($result->num_rows > 0) {
-            // If idbuku exists, insert data into BorrowBook table
-            $sql = "INSERT INTO BorrowBook (bookId, userName, borrowDate, returnDate)
-                    VALUES (
-                        '$idbuku', 
-                        '$peminjam', 
-                        '$dateBorrow', 
-                        '$dateReturn'
-                    )";
+            // Check if the book is already borrowed and not yet returned
+            $borrowedQuery = "SELECT * FROM BorrowBook WHERE bookId = '$idbuku' AND returnDate IS NULL";
+            $borrowedResult = $conn->query($borrowedQuery);
 
-            // Check if the query is executed successfully
-            if ($conn->query($sql) === TRUE) {
-                // Redirect to a success page or do something else
-                header("Location: telahpinjam.php");
-                exit(); // Terminate script execution after redirect
+            if ($borrowedResult->num_rows > 0) {
+                // Book is currently borrowed
+                $message = "You cannot borrow this book because it is already borrowed.";
             } else {
-                // If there's an error in the query execution
-                echo "Error: " . $sql . "<br>" . $conn->error;
+                // If idbuku exists and the book is not currently borrowed, insert data into BorrowBook table
+                $sql = "INSERT INTO BorrowBook (bookId, userName, borrowDate, returnDate)
+                        VALUES ('$idbuku', '$peminjam', '$dateBorrow', '$dateReturn')";
+
+                // Check if the query is executed successfully
+                if ($conn->query($sql) === TRUE) {
+                    // Redirect to a success page or do something else
+                    header("Location: telahpinjam.php");
+                    exit(); // Terminate script execution after redirect
+                } else {
+                    // If there's an error in the query execution
+                    $message = "Error: " . $sql . "<br>" . $conn->error;
+                }
             }
         } else {
             // If idbuku does not exist in the Book table
-            echo "Error: Book ID does not exist.";
+            $message = "Error: Book ID does not exist.";
         }
     } else {
         // If required form fields are not set
-        echo "Required form fields are not set.";
+        $message = "Required form fields are not set.";
     }
-
-    $conn->close(); // Close connection after handling form submission
 }
 ?>
 
@@ -97,8 +99,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <br>
                     <input type="submit" value="Pinjam">
                 </form>
+                <?php
+                if ($message) {
+                    echo "<p style='color: red;'>$message</p>";
+                }
+                ?>
             </div>
-            </form>
+        </main>
+    </div>
 </body>
 
 </html>

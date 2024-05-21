@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +23,7 @@
             <div class="layer3" align="center">
                 <h2>BUKU TELAH DIPULANG</h2>
                 <h2>BALIK KE MENU: </h2>
-                <a href="menubuku.php"><img src="Back button.png" alt="" width="50"></a>
+                <a href="MainMenu.php"><img src="Back button.png" alt="" width="50"></a>
             </div>
         </main>
     </div>
